@@ -1,15 +1,25 @@
 const express = require('express');
 const router = express.Router();
 const fs = require('fs');
+const Topic = require('../models/topic')
+const formidable = require('express-formidable');
 
+
+router.use(formidable());
+router.post('/save-post', (req, res) => {
+
+  mongoose.connect(mongoConnection);
+  const newPost = new Post(req.fields);
+
+});
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
 
   /**
-   * Define a callback function to render the
-   * homepage once the topics data has been loaded
-   */
-  const renderTopics = function(error, file) {
+    * Define a callback function to render the
+    * homepage once the topics data has been loaded
+    */
+  const renderTopics = function (error, file) {
 
     if (error) {
       throw error;
@@ -53,8 +63,8 @@ router.get('/', function(req, res, next) {
   };
 
   /**
-   * Load the topics file
-   */
+    * Load the topics file
+    */
   const topicsFilePath = __dirname + '/../data/topics.json';
   fs.readFile(topicsFilePath, renderTopics);
 });
