@@ -15,10 +15,6 @@ router.post('/save-post', (req, res) => {
 /* GET home page. */
 router.get('/', function (req, res, next) {
 
-  /**
-    * Define a callback function to render the
-    * homepage once the topics data has been loaded
-    */
   const renderTopics = function (error, file) {
 
     if (error) {
@@ -67,6 +63,10 @@ router.get('/', function (req, res, next) {
     */
   const topicsFilePath = __dirname + '/../data/topics.json';
   fs.readFile(topicsFilePath, renderTopics);
+
+
 });
 
 module.exports = router;
+
+

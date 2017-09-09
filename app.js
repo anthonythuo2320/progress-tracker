@@ -7,6 +7,8 @@ const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
 
 const index = require('./routes/index');
+const addTopic = require('./routes/addTopic');
+const siteController = require('./data/site-controller')
 
 const app = express();
 
@@ -23,6 +25,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
+app.use('/addTopic', addTopic);
+app.use('/api', siteController);
+
+const router=require('./api/getTopics');
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
